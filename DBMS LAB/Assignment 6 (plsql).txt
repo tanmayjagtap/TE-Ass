@@ -1,0 +1,20 @@
+DECLARE  
+    roll_1 number; 
+    tmp O_RollCall%ROWTYPE; 
+     
+    CURSOR cc(no_1 NUMBER) IS 
+        SELECT * FROM O_RollCall WHERE O_RollCall.roll < no_1 
+        MINUS 
+        SELECT * FROM N_RollCall; 
+ 
+BEGIN 
+    roll_1 := 4; 
+    OPEN cc(roll_1); 
+    LOOP 
+        FETCH cc INTO tmp; 
+        EXIT WHEN cc%NOTFOUND; 
+         
+        INSERT INTO N_RollCall VALUES (tmp.roll,tmp.name); 
+    END LOOP; 
+    CLOSE cc; 
+END;

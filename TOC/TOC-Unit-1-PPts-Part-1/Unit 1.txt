@@ -1,0 +1,6 @@
+Introduction to Formal language, introduction to language translation logic, Essentials of
+translation, Alphabets and languages, Finite representation of language, Finite Automata (FA): An
+Informal Picture of FA, Finite State Machine (FSM), Language accepted by FA, Definition of
+Regular Language, Deterministic and Nondeterministic FA(DFA and NFA), epsilon- NFA, FA
+with output: Moore and Mealy machines -Definition, models, inter-conversion.
+Case Study: FSM for vending machine, spell checker

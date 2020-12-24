@@ -1,0 +1,44 @@
+------------Creating Tables----------------------------
+
+create table Borrower(Rollin number(6) NOT NULL ,Name varchar(50) NOT NULL,DateofIssue date ,NameofBook varchar(100),Status varchar(1));
+
+-------------Inserting Data------------------------------
+insert into Borrower(Rollin,Name,DateofIssue,NameofBook,Status) values (1001,'Tanmay',Date '2020-11-01','Harry Potter','I');
+
+insert into Borrower(Rollin,Name,DateofIssue,NameofBook,Status) values (1002,'Ankita',Date '2020-11-05','GYM','I');
+
+
+-------------Creating Fine Table-----------------------
+create table Fine (Roll_no number(8),DateofReturn date,Amt number(5));
+
+
+-------------PL/SQL-----------------------------------
+
+declare 
+
+rollno number(8):=1001;
+dateissue date;
+datereturn date := Date '2020-11-18';
+datediff smallint;
+amt smallint;
+begin 
+
+select DateofIssue into dateissue from Borrower 
+where Rollin=1001 and NameofBook='Harry Potter' ;
+
+datediff := datereturn-dateissue ;
+
+	if (datediff between 15 and 30) then 
+		amt:=(datediff-15)*5;
+		insert into Fine values (rollno,datereturn,amt);
+		
+		update Borrower set Status='R'
+		where Rollin = 1001 and NameofBook = 'Harry Potter';
+	else
+		amt:=(datediff-15)*50;
+		insert into Fine values (rollno,datereturn,amt);
+		
+		update Borrower set Status='R'
+		where Rollin = 1001 and NameofBook = 'Harry Potter';
+	end if;
+end;

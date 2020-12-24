@@ -1,0 +1,5 @@
+Introduction to Database Management Systems, Purpose of Database Systems, Database-System
+Applications, View of Data, Database Languages, Database System Structure, Data Models,
+Database Design and ER Model: Entity, Attributes, Relationships, Constraints, Keys, Design
+Process, Entity Relationship Model, ER Diagram, Design Issues, Extended E-R Features,
+converting E-R & EER diagram into tables.

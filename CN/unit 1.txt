@@ -1,0 +1,6 @@
+Introduction of LAN; MAN; WAN; PAN, Ad-hoc Network, Network Architectures: Client-Server;
+Peer To Peer; Distributed and SDN, OSI Model, TCP/IP Model, Topologies: Star and
+Hierarchical; Design issues for Layers, Transmission Mediums: CAT5, 5e, 6, OFC and Radio
+Spectrum, Network Devices: Bridge, Switch, Router, Brouter and Access Point, Manchester and
+Differential Manchester Encodings; IEEE802.11: Frequency Hopping (FHSS) and Direct
+Sequence (DSSS)

@@ -1,0 +1,7 @@
+Software Engineering Fundamentals: Nature of Software, Software Engineering Principles,
+The Software Process, Software Myths. Process Models :A Generic Process Model, Prescriptive
+Process Models: The Waterfall, Incremental Process(RAD), Evolutionary Process, Unified
+Process, Concurrent. Advanced Process Models & Tools: Agile software development: Agile
+methods, Plan-driven and agile development, Extreme programming Practices, Testing in XP,
+Pair programming. Introduction to agile tools: JIRA, Kanban,
+Case Studies: An information system (mental health-care system), wilderness weather system

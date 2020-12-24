@@ -1,0 +1,79 @@
+create table stud_marks(roll_no number(20),name varchar2(20),total_marks number(20));
+insert into stud_marks values(1,'Sumedh',1200);
+insert into stud_marks values(2,'Viraj',950);
+insert into stud_marks values(3,'Tejas',850);
+insert into stud_marks values(4,'Macho',800);
+
+create table result(roll_no number(20),name varchar2(20),class varchar2(20));
+--------------------------------------------------------
+Create or replace procedure proc_grade
+(var_rollno in number,
+p_roll_no out stud_marks.roll_no%type,
+p_name out stud_marks.name%type,
+p_total out stud_marks.total_marks%type)
+AS
+BEGIN
+SELECT roll_no, name, total_marks into p_roll_no, p_name, p_total from stud_marks where
+roll_no=var_rollno;
+IF p_total <=1500 and p_total >= 990 THEN
+insert into result values(p_roll_no,p_name,'Distinction');
+Else if p_total <=989 and p_total >= 900 THEN
+insert into result values(p_roll_no,p_name,'First Class');
+Else if p_total <=899 and p_total >= 825 THEN
+insert into result values(p_roll_no,p_name,'HSC');
+Else
+insert into result values(p_roll_no,p_name,'fail');
+End if;
+End if;
+End if;
+EXCEPTION
+WHEN no_data_found then
+dbms_output.put_line('Roll no ' || var_rollno ||'not found');
+end;
+
+------------------------------------------------------------
+declare 
+var_rollno number(20);
+p_roll_no stud_marks.roll_no%type;
+p_name stud_marks.name%type;
+p_total stud_marks.total_marks%type;
+
+begin
+var_rollno:=1;
+Proc_grade(var_rollno,p_roll_no,p_name,p_total);
+end;
+
+--------------------------------------------------------
+declare 
+var_rollno number(20);
+p_roll_no stud_marks.roll_no%type;
+p_name stud_marks.name%type;
+p_total stud_marks.total_marks%type;
+
+begin
+var_rollno:=2;
+Proc_grade(var_rollno,p_roll_no,p_name,p_total);
+end;
+
+--------------------------------------------------------
+declare 
+var_rollno number(20);
+p_roll_no stud_marks.roll_no%type;
+p_name stud_marks.name%type;
+p_total stud_marks.total_marks%type;
+
+begin
+var_rollno:=3;
+Proc_grade(var_rollno,p_roll_no,p_name,p_total);
+end;
+-----------------------------------------------------
+declare 
+var_rollno number(20);
+p_roll_no stud_marks.roll_no%type;
+p_name stud_marks.name%type;
+p_total stud_marks.total_marks%type;
+
+begin
+var_rollno:=4;
+Proc_grade(var_rollno,p_roll_no,p_name,p_total);
+end;

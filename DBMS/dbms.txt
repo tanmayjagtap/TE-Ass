@@ -1,0 +1,47 @@
+DBMS
+
+lec 01(28/july)
+What is data
+information
+datatbase
+database management
+functions of management sys CURD
+applications-grocery shop supermarket
+
+lec 02 (30/July)
+purpose of db:
+for storing large data with cannot rely on excel as the size increases so the files are not sufficient 
+
+-------------IMP-------------------
+disadv of file processing sys:
+
+1.data redundacy,inconsistent(GETTING MULTIPLE RESULTS)
+2.diffcult to access data
+3.data isolation
+4.integrity prob-consistency constraints-to check validity by validating by applying few contraints(rules)
+5.atomicity prob-recovery if by chance while updation power failure happens,if this happens then ntg will be updates ektr sala updation single go madhe kara bt jr nhi zala tr sagla janar pahilya psun kara
+6.concurent-access anomiles---->
+7.security pb
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

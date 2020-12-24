@@ -1,0 +1,608 @@
+===============Data Base Creation============
+
+create database bank;
+
+use bank;
+============Table creation===================
+create table account
+    -> (acc_no int primary key ,
+    -> branch_name varchar(50) not null,
+    -> balance int not null
+    -> );
+Query OK, 0 rows affected (0.80 sec)
+
+============================================
+create table branch(
+    -> branch_name varchar(50) primary key,
+    -> branch_city varchar(50) not null ,
+    -> assets int
+    -> );
+Query OK, 0 rows affected (1.86 sec)
+
+============================================
+ create table customer(
+    -> cust_name varchar(50) primary key,
+    -> cust_street varchar(100) not null,
+    -> cust_city varchar(50) not null);
+Query OK, 0 rows affected (0.87 sec)
+
+============================================
+create table depositor(
+    -> cust_name varchar(50),
+    -> acc_no int not null);
+Query OK, 0 rows affected (2.08 sec)
+
+============================================
+create table loan (
+    -> loan_no int primary key,
+    -> branch_name varchar(50) not null,
+    -> amount int
+    -> );
+Query OK, 0 rows affected (0.57 sec)
+
+============================================
+create table borrower (
+    -> cust_name varchar(50) primary key,
+    -> loan_no int not null
+    -> );
+Query OK, 0 rows affected (0.61 sec)
+
+===============Adding Constraints like foreign key primary key and an auto increment ID===================
+Added Foreign Keys:
+
+alter table account add constraint branch_name foreign key (branch_name) references branch(branch_name);
+Query OK, 0 rows affected (3.67 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+alter table depositor add foreign key (acc_no) references account(acc_no);
+Query OK, 0 rows affected (3.60 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+alter table depositor drop primary key;
+Query OK, 0 rows affected (3.94 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+alter table depositor add id int unsigned primary key auto_increment;
+Query OK, 0 rows affected (2.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table depositor auto_increment=1000 ;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table depositor add foreign key (cust_name) references customer(cust_name);
+Query OK, 0 rows affected (2.57 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table borrower add foreign key (loan_no) references loan(loan_no);
+Query OK, 0 rows affected (3.86 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table account add foreign key (branch_name) references branch(branch_name);
+Query OK, 0 rows affected (2.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+================Cascading=======================
+alter table loan add foreign key (branch_name) references branch(branch_name) on delete cascade;
+Query OK, 0 rows affected (4.48 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+alter table account add constraint branch_cnst foreign key (branch_name) references branch(branch_name) on delete cascade;
+Query OK, 0 rows affected (4.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+===========describing tables=====================
+
+accounts table 
+
+mysql> describe account;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| acc_no      | int         | NO   | PRI | NULL    |       |
+| branch_name | varchar(50) | NO   | MUL | NULL    |       |
+| balance     | float(10,2) | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql> describe branch;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| branch_name | varchar(50) | NO   | PRI | NULL    |       |
+| branch_city | varchar(50) | NO   |     | NULL    |       |
+| assets      | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> describe customer;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| cust_name   | varchar(50)  | NO   | PRI | NULL    |       |
+| cust_street | varchar(100) | NO   |     | NULL    |       |
+| cust_city   | varchar(50)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> describe depositor;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| cust_name | varchar(50)  | NO   | MUL | NULL    |                |
+| acc_no    | int          | NO   | MUL | NULL    |                |
+| id        | int unsigned | NO   | PRI | NULL    | auto_increment |
++-----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> describe loan;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| loan_no     | int         | NO   | PRI | NULL    |       |
+| branch_name | varchar(50) | NO   | MUL | NULL    |       |
+| amount      | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe borrower;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| cust_name | varchar(50) | NO   | PRI | NULL    |       |
+| loan_no   | int         | NO   | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+
+===============Adding values to tables=============================
+mysql> insert into branch values
+    -> ('AKURDI','PUNE',1000000),
+    -> ('CAMP','PUNE',1535000),
+    -> ('CITY','PUNE',1750000),
+    -> ('KONDHWA','PUNE',1750000),
+    -> ('NIGDI','PUNE',1500000),
+    -> ('VIMAN NAGAR','PUNE',2530000);
+Query OK, 6 rows affected (0.30 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from branch
+    -> ;
++-------------+-------------+---------+
+| branch_name | branch_city | assets  |
++-------------+-------------+---------+
+| AKURDI      | PUNE        | 1000000 |
+| CAMP        | PUNE        | 1535000 |
+| CITY        | PUNE        | 1750000 |
+| KONDHWA     | PUNE        | 1750000 |
+| NIGDI       | PUNE        | 1500000 |
+| VIMAN NAGAR | PUNE        | 2530000 |
++-------------+-------------+---------+
+6 rows in set (0.10 sec)
+
+============================================
+mysql> insert into account values
+    -> (352,'AKURDI',1500),
+    -> (353,'AKURDI',7000),
+    -> (354,'AKURDI',3500),
+    -> (355,'NIGDI',7860),
+    -> (356,'NIGDI',80654),
+    -> (357,'CAMP',725253),
+    -> (358,'CAMP',21000),
+    -> (359,'CITY',15200);
+Query OK, 8 rows affected (0.29 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> insert into account values
+    -> (360,'VIMAN NAGAR',53201),
+    -> (361,'VIMAN NAGAR',11000),
+    -> (362,'KONDHWA',11000),
+    -> (363,'KONDHWA',12500);
+Query OK, 4 rows affected (0.17 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from account;
++--------+-------------+-----------+
+| acc_no | branch_name | balance   |
++--------+-------------+-----------+
+|    352 | AKURDI      |   1500.00 |
+|    353 | AKURDI      |   7000.00 |
+|    354 | AKURDI      |   3500.00 |
+|    355 | NIGDI       |   7860.00 |
+|    356 | NIGDI       |  80654.00 |
+|    357 | CAMP        | 725253.00 |
+|    358 | CAMP        |  21000.00 |
+|    359 | CITY        |  15200.00 |
+|    360 | VIMAN NAGAR |  53201.00 |
+|    361 | VIMAN NAGAR |  11000.00 |
+|    362 | KONDHWA     |  11000.00 |
+|    363 | KONDHWA     |  12500.00 |
++--------+-------------+-----------+
+12 rows in set (0.00 sec)
+
+
+====================================================
+
+mysql> insert into customer values
+    -> ('TEJAS MACHKAR','LIARE ROAD','PUNE');
+Query OK, 1 row affected (0.12 sec)
+
+mysql>
+mysql> insert into customer values
+    -> ('ANKITA ZADOO','B.C.STREET','JAMMU'),
+    -> ('ASHUTOSH KEDARI','LIBRARY STREET','PUNE'),
+    -> ('ATULYA NAYAR','PANDA ROAD','PUNE'),
+    -> ('HARSHIKA MISHRA','LAXMI ROAD','PUNE'),
+    -> ('NIKHIL KHULE','GREY ROAD','PUNE'),
+    -> ('SAYALI SHINDE','LOST ROAD','PUNE');
+Query OK, 6 rows affected (0.26 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values
+    -> ('SHABBIR KACHWALA','CONVENT STREET','PUNE'),
+    -> ('SUMEDH OVHAL','60 STREET','PUNE'),
+    -> ('TANAYA BISWAS','MAIN STREET','PUNE'),
+    -> ('TANMAY JAGTAP','FASHION STREET','PUNE'),
+    -> ('TEJAS LABDE','SLEEP STREET','PUNE');
+Query OK, 5 rows affected (0.21 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> SELECT * FROM customer;
++------------------+----------------+-----------+
+| cust_name        | cust_street    | cust_city |
++------------------+----------------+-----------+
+| ANKITA ZADOO     | B.C.STREET     | JAMMU     |
+| ASHUTOSH KEDARI  | LIBRARY STREET | PUNE      |
+| ATULYA NAYAR     | PANDA ROAD     | PUNE      |
+| HARSHIKA MISHRA  | LAXMI ROAD     | PUNE      |
+| NIKHIL KHULE     | GREY ROAD      | PUNE      |
+| SAYALI SHINDE    | LOST ROAD      | PUNE      |
+| SHABBIR KACHWALA | CONVENT STREET | PUNE      |
+| SUMEDH OVHAL     | 60 STREET      | PUNE      |
+| TANAYA BISWAS    | MAIN STREET    | PUNE      |
+| TANMAY JAGTAP    | FASHION STREET | PUNE      |
+| TEJAS LABDE      | SLEEP STREET   | PUNE      |
+| TEJAS MACHKAR    | LIARE ROAD     | PUNE      |
++------------------+----------------+-----------+
+12 rows in set (0.00 sec)
+
+
+===========================================================
+
+mysql> insert into depositor
+    -> (cust_name,acc_no)
+    -> values
+    -> ('ANKITA ZADOO',352),
+    -> ('ASHUTOSH KEDARI',353),
+    -> ('ATULYA NAYAR',354),
+    -> ('HARSHIKA MISHRA',355),
+    -> ('NIKHIL KHULE',356),
+    -> ('SAYALI SHINDE',357);
+Query OK, 6 rows affected (0.17 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into depositor
+    -> (cust_name,acc_no)
+    -> values
+    -> ('SHABBIR KACHWALA',358),
+    -> ('SUMEDH OVHAL',359),
+    -> ('TANAYA BISWAS',360),
+    -> ('TANMAY JAGTAP',361),
+    -> ('TEJAS LABDE',362),
+    -> ('TEJAS MACHKAR',362);
+Query OK, 6 rows affected (0.20 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into depositor (cust_name,acc_no) values ('TEJAS MACHKAR',363);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> select * from depositor;
++------------------+--------+------+
+| cust_name        | acc_no | id   |
++------------------+--------+------+
+| ANKITA ZADOO     |    352 | 1000 |
+| ASHUTOSH KEDARI  |    353 | 1001 |
+| ATULYA NAYAR     |    354 | 1002 |
+| HARSHIKA MISHRA  |    355 | 1003 |
+| NIKHIL KHULE     |    356 | 1004 |
+| SAYALI SHINDE    |    357 | 1005 |
+| SHABBIR KACHWALA |    358 | 1006 |
+| SUMEDH OVHAL     |    359 | 1007 |
+| TANAYA BISWAS    |    360 | 1008 |
+| TANMAY JAGTAP    |    361 | 1009 |
+| TEJAS LABDE      |    362 | 1010 |
+| TEJAS MACHKAR    |    362 | 1011 |
+| TEJAS MACHKAR    |    363 | 1012 |
++------------------+--------+------+
+
+==============================================================
+mysql> insert into loan values
+    -> (110,'AKURDI',12000),
+    -> (111,'AKURDI',90000),
+    -> (112,'CAMP',40000),
+    -> (113,'NIGDI',12500),
+    -> (114,'AKURDI',12500),
+    -> (115,'KONDHWA',10500);
+Query OK, 6 rows affected (0.47 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * from loan;
++---------+-------------+--------+
+| loan_no | branch_name | amount |
++---------+-------------+--------+
+|     110 | AKURDI      |  12000 |
+|     111 | AKURDI      |  90000 |
+|     112 | CAMP        |  40000 |
+|     113 | NIGDI       |  12500 |
+|     114 | AKURDI      |  12500 |
+|     115 | KONDHWA     |  10500 |
++---------+-------------+--------+
+6 rows in set (0.00 sec)
+=============================================================
+
+mysql> insert into borrower values
+    -> ('ANKITA ZADOO',110),
+    -> ('ASHUTOSH KEDARI',111),
+    -> ('SHABBIR KACHWALA',112),
+    -> ('HARSHIKA MISHRA',113),
+    -> ('ATULYA NAYAR',114),
+    -> ('TEJAS LABDE',115);
+Query OK, 6 rows affected (0.30 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from borrower;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA ZADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
++------------------+---------+
+6 rows in set (0.00 sec)
+
+==========================Queries==================================
+
+1.select loan_no mysql> select branch_name from loan;
++-------------+
+| branch_name |
++-------------+
+| AKURDI      |
+| AKURDI      |
+| AKURDI      |
+| CAMP        |
+| KONDHWA     |
+| NIGDI       |
++-------------+
+6 rows in set (0.12 sec)
+
+
+
+2. mysql> select loan_no from loan
+    -> where branch_name = 'AKURDI' &&
+    -> amount>12000;
++---------+
+| loan_no |
++---------+
+|     111 |
+|     114 |
++---------+
+2 rows in set, 1 warning (0.05 sec)
+
+3.mysql> select loan.loan_no,
+    -> borrower.cust_name,loan.amount
+    -> from loan,borrower
+    -> where borrower.loan_no=loan.loan_no;
++---------+------------------+--------+
+| loan_no | cust_name        | amount |
++---------+------------------+--------+
+|     110 | ANKITA ZADOO     |  12000 |
+|     111 | ASHUTOSH KEDARI  |  90000 |
+|     112 | SHABBIR KACHWALA |  40000 |
+|     113 | HARSHIKA MISHRA  |  12500 |
+|     114 | ATULYA NAYAR     |  12500 |
+|     115 | TEJAS LABDE      |  10500 |
++---------+------------------+--------+
+6 rows in set (0.00 sec)
+
+4.mysql> select cust_name from borrower
+    -> union
+    -> select branch_name from loan
+    -> where branch_name='AKURDI'
+    -> order by cust_name asc;
++------------------+
+| cust_name        |
++------------------+
+| AKURDI           |
+| ANKITA ZADOO     |
+| ASHUTOSH KEDARI  |
+| ATULYA NAYAR     |
+| HARSHIKA MISHRA  |
+| SHABBIR KACHWALA |
+| TEJAS LABDE      |
++------------------+
+7 rows in set (0.05 sec)
+
+5.mysql> select cust_name from borrower
+    -> union
+    -> select cust_name from customer;
++------------------+
+| cust_name        |
++------------------+
+| ANKITA ZADOO     |
+| ASHUTOSH KEDARI  |
+| SHABBIR KACHWALA |
+| HARSHIKA MISHRA  |
+| ATULYA NAYAR     |
+| TEJAS LABDE      |
+| NIKHIL KHULE     |
+| SAYALI SHINDE    |
+| SUMEDH OVHAL     |
+| TANAYA BISWAS    |
+| TANMAY JAGTAP    |
+| TEJAS MACHKAR    |
++------------------+
+12 rows in set (0.03 sec)
+
+6.mysql> SELECT Depositor.cust_name FROM Depositor INNER JOIN Borrower ON Depositor.cust_name=Borrower.cust_name;
++------------------+
+| cust_name        |
++------------------+
+| ANKITA ZADOO     |
+| ASHUTOSH KEDARI  |
+| ATULYA NAYAR     |
+| HARSHIKA MISHRA  |
+| SHABBIR KACHWALA |
+| TEJAS LABDE      |
++------------------+
+6 rows in set (0.12 sec)
+
+7.mysql>  SELECT cust_name FROM Depositor
+    -> where (cust_name NOT IN(SELECT cust_name FROM Borrower));
++---------------+
+| cust_name     |
++---------------+
+| NIKHIL KHULE  |
+| SAYALI SHINDE |
+| SUMEDH OVHAL  |
+| TANAYA BISWAS |
+| TANMAY JAGTAP |
+| TEJAS MACHKAR |
+| TEJAS MACHKAR |
++---------------+
+7 rows in set (0.11 sec)
+
+
+
+8. mysql> Select avg(balance)from Account where branch_name='akurdi';
++--------------+
+| avg(balance) |
++--------------+
+|  4000.000000 |
++--------------+
+1 row in set (0.07 sec)
+
+9.mysql> select branch_name,avg(balance) from account group by branch_name;
++-------------+---------------+
+| branch_name | avg(balance)  |
++-------------+---------------+
+| AKURDI      |   4000.000000 |
+| CAMP        | 373126.500000 |
+| CITY        |  15200.000000 |
+| KONDHWA     |  11750.000000 |
+| NIGDI       |  44257.000000 |
+| VIMAN NAGAR |  32100.500000 |
++-------------+---------------+
+6 rows in set (0.11 sec)
+
+10.mysql> select branch_name,count(acc_no) from account
+    -> group by branch_name;
++-------------+---------------+
+| branch_name | count(acc_no) |
++-------------+---------------+
+| AKURDI      |             3 |
+| CAMP        |             2 |
+| CITY        |             1 |
+| KONDHWA     |             2 |
+| NIGDI       |             2 |
+| VIMAN NAGAR |             2 |
++-------------+---------------+
+6 rows in set (0.00 sec)
+
+11.mysql> select branch_name,avg(balance) from account
+    -> group by branch_name
+    -> having avg(balance)>12000;
++-------------+---------------+
+| branch_name | avg(balance)  |
++-------------+---------------+
+| CAMP        | 373126.500000 |
+| CITY        |  15200.000000 |
+| NIGDI       |  44257.000000 |
+| VIMAN NAGAR |  32100.500000 |
++-------------+---------------+
+4 rows in set (0.11 sec)
+
+12.
+mysql> SELECT COUNT(cust_name) AS cust_count
+    -> FROM customer;
++------------+
+| cust_count |
++------------+
+|         12 |
++------------+
+1 row in set (0.00 sec)
+
+13.
+mysql> select sum(amount) from loan;
++-------------+
+| sum(amount) |
++-------------+
+|      177500 |
++-------------+
+1 row in set (0.10 sec)
+
+14.mysql> delete from loan
+    -> where amount between 1200 and 1500;
+Query OK, 0 rows affected (0.14 sec)
+
+15.mysql> alter table Account Add Foreign key (branch_name) references branch (branch_name) on delete cascade;
+Query OK, 12 rows affected (4.20 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> alter table Loan Add Foreign key (branch_name) references branch (branch_name) on delete cascade;
+Query OK, 6 rows affected (2.07 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> alter table Depositor Add Foreign key (acc_no) references Account (acc_no) on delete cascade;
+Query OK, 13 rows affected (3.37 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> alter table Borrower Add Foreign key (loan_no) references Loan (loan_no) on delete cascade;
+Query OK, 6 rows affected (2.24 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> delete from branch where branch_name = 'NIGDI';
+Query OK, 1 row affected (0.15 sec) 
+
+->select * from branch;
++---------------+-------------+---------+
+| branch_name   | branch_city | assets  |
++---------------+-------------+---------+
+| AKURDI BRANCH | PUNE        | 1000000 |
+| CAMP          | PUNE        | 1535000 |
+| CITY          | PUNE        | 1750000 |
+| KONDHWA       | PUNE        | 1750000 |
+| VIMAN NAGAR   | PUNE        | 2530000 |
++---------------+-------------+---------+
+
+
+16.mysql> select * from cust;
++------------------+----------------+-----------+
+| cust_name        | cust_street    | cust_city |
++------------------+----------------+-----------+
+| ANKITA ZADOO     | B.C.STREET     | JAMMU     |
+| ASHUTOSH KEDARI  | LIBRARY STREET | PUNE      |
+| ATULYA NAYAR     | PANDA ROAD     | PUNE      |
+| HARSHIKA MISHRA  | LAXMI ROAD     | PUNE      |
+| NIKHIL KHULE     | GREY ROAD      | PUNE      |
+| SAYALI SHINDE    | LOST ROAD      | PUNE      |
+| SHABBIR KACHWALA | CONVENT STREET | PUNE      |
+| SUMEDH OVHAL     | 60 STREET      | PUNE      |
+| TANAYA BISWAS    | MAIN STREET    | PUNE      |
+| TANMAY JAGTAP    | FASHION STREET | PUNE      |
+| TEJAS LABDE      | SLEEP STREET   | PUNE      |
+| TEJAS MACHKAR    | LIARE ROAD     | PUNE      |
++------------------+----------------+-----------+
+12 rows in set (0.15 sec)
+
+17.Create sequence roll_seq and use in student table for roll_no column

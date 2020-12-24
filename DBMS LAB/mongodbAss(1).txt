@@ -1,0 +1,2139 @@
+ use empdb;
+switched to db empdb
+> db;
+empdb
+ ---------------------------------INSERT INTO COLLECTION(employee)------------------------------------ 
+
+> db.employee.insert({empid:1,name:{fname:'MACHO',lname:'MACHKAR'}  ,company_name:'INFOSYS',salary_no:31000,des:'tester',age:23,expertise:'web dev',DOB:new Date('2000-01-22'),email:'tejassmachkar@gmail.com',contact:9765222269,address:[{padd:{city:'pune',state:'maharashtra'}},{ladd:{city:'pune',state:'maharashtra'}}] });
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:2,name:{fname:'Harshika',lname:'mishra'}  ,company_name:'INFOSYS',salary_no:310000,des:'HR',age:45,expertise:'Recruitment',DOB:new Date('2000-03-15'),email:'harshikaINC@gmail.com',contact:8765222269,address:[{padd:{city:'Panaji',state:'Goa'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:3,name:{fname:'Sumedh',lname:'Ovhal'}  ,company_name:'TCS',salary_no:21000,des:'Tester',age:25,expertise:'Sympathy Gainer',DOB:new Date('2000-02-06'),email:'sumedh@gmail.com',contact:8765222279,address:[{padd:{city:'Morocco',state:'Uganda'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:4,name:{fname:'Shabbir',lname:'kanchwala'}  ,company_name:'TCS',salary_no:210000,des:'Developer',age:28,expertise:'managing ppl',DOB:new Date('2000-11-25'),email:'shabbir@gmail.com',contact:8775222279,address:[{padd:{city:'Al habibi',state:'Jordan'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:5,name:{fname:'Ankita',lname:'Zadoo'}  ,company_name:'Infosys',salary_no:21000,des:'Developer',age:44,expertise:'managing ppl',DOB:new Date('2000-02-29'),email:'ankita@gmail.com',contact:8775223279,address:[{padd:{city:'City',state:'Jordan'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:6,name:{fname:'Shreya',lname:'Kashid'}  ,company_name:'Infosys',salary_no:50000,des:'Senior Developer',age:37,expertise:'completion',DOB:new Date('2000-11-04'),email:'shreya@gmail.com',contact:8775225679,address:[{padd:{city:'satara',state:'maharashtra'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:7,name:{fname:'Sayali',lname:'Ovhal'}  ,company_name:'Infosys',salary_no:51000,des:'tester',age:34,expertise:'Talking',DOB:new Date('2000-10-19'),email:'abc@gmail.com',contact:8755225679,address:[{padd:{city:'Dream City',state:'Mars'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:8,name:{fname:'Atulya',lname:'Nair'}  ,company_name:'',salary_no:51000,des:' Developer',age:56,expertise:'web dev',DOB:new Date('2000-12-11'),email:'tulyaaa@gmail.com',contact:8755225879,address:[{padd:{city:'kochin',state:'kerela'}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:9,name:{fname:'Kaushik',lname:'Oswal'}  ,company_name:'amazon',salary_no:21000,des:'Senior Developer',age:15,expertise:'android dev',DOB:new Date('2000-12-11'),email:'Oswal@gmail.com',contact:8755225479,address:[{padd:{city:'Mirzapur',state:'UP',Pin_code:411101}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insert({empid:10,name:{fname:'sanyukta',lname:'adsule'}  ,company_name:'serum',salary_no:11999,des:'tester',age:21,expertise:'app dev',DOB:new Date('2000-10-23'),email:'sanyuuuu@gmail.com',contact:8755225879,address:[{padd:{city:'pune',state:'Maharashtra',Pin_code:411014}},{ladd:{city:'pune',state:'maharashtra'}}]});
+WriteResult({ "nInserted" : 1 })
+
+----------------------------------ALL THE DOCUMENTS------------------------------------------------
+
+> db.employee.find().pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 21000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 210000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+
+
+------------------------------QUESTIONS --------------------------------------------
+
+
+1. Select all documents where the Designation field has the value "Programmer" and the
+value of the salary field is greater than 30000.
+>  db.employee.find({des:'Developer',salary_no:{$gt:30000}}).pretty();
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 210000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+
+
+2. Creates a new document if no document in the employee collection contains {Designation: "Tester", Company_name: "TCS", Age: 25}
+> db.employee.update({company_name:'TCS',salary_no:11999,des:'Tester',age:25},{$set:{empid:15}},{upsert:"True"});
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("5fe06a37020554aad92b42c5")
+})
+> db.employee.find().pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 21000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 210000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fe06a37020554aad92b42c5"),
+        "age" : 25,
+        "company_name" : "TCS",
+        "des" : "Tester",
+        "salary_no" : 11999,
+        "empid" : 15
+}
+
+3. Selects all documents in the collection where the field age has a value less than 30 or
+the value of the salary field is greater than 40000.
+> db.employee.find({$or: [{age:{$lt:30}},{salary_no:{$gt:40000}}]}).pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 21000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 210000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+
+
+**4. Matches all documents where the value of the field Address is an embedded document
+that contains only the field city with the value "Pune" and the field Pin_code with the
+value "411001".
+>db.employee.find({$and:[{address.padd.city:"pune"},{address.padd.state:"maharashtra"}]}).pretty();
+
+
+
+5. Finds all documents with Company_name: "TCS" and modifies their salary field by
+2000.
+> db.employee.updateMany({company_name:'TCS'},{$set: {salary_no:2000}});
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.employee.find().pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fe06a37020554aad92b42c5"),
+        "age" : 25,
+        "company_name" : "TCS",
+        "des" : "Tester",
+        "salary_no" : 2000,
+        "empid" : 15
+}
+
+6. Find documents where Designation is not equal to "Developer".
+> db.employee.find({des:{$ne:'Developer'}}).pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fe06a37020554aad92b42c5"),
+        "age" : 25,
+        "company_name" : "TCS",
+        "des" : "Tester",
+        "salary_no" : 2000,
+        "empid" : 15
+}
+
+
+
+
+7. Find _id, Designation, Address and Name from all documents where Company_name
+is "Infosys".
+> db.employee.find({company_name:"Infosys"},{empid:1,name:1,address:1,des:1,company_name:1}).pretty();
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "des" : "Developer",
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "des" : "Senior Developer",
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "des" : "tester",
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+
+
+
+
+8. Selects all documents in the employee collection where the value of the Designation
+is either "Developer" or "Tester".
+> db.employee.find({$or: [{des:'Developer'},{des:'Tester'}]}).pretty();
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fe06a37020554aad92b42c5"),
+        "age" : 25,
+        "company_name" : "TCS",
+        "des" : "Tester",
+        "salary_no" : 2000,
+        "empid" : 15
+}
+
+
+
+9. Find all document with Exact Match on an Array having Expertise:
+['Mongodb','Mysql', 'Cassandra']
+>db.employee.find({expertise:{$in:['Recruitment','managing ppl']}}).pretty();
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf2efd9f4759b65a8fb1"),
+        "empid" : 4,
+        "name" : {
+                "fname" : "Shabbir",
+                "lname" : "kanchwala"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Developer",
+        "age" : 28,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-11-25T00:00:00Z"),
+        "email" : "shabbir@gmail.com",
+        "contact" : 8775222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Al habibi",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+
+10. Drop Single documents where designation="Developer"
+> db.employee.deleteOne({des:'Developer'}); OR db.employee.remove({des:'Developer'},1);
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.employee.find().pretty();
+{
+        "_id" : ObjectId("5fddded9fd9f4759b65a8fae"),
+        "empid" : 1,
+        "name" : {
+                "fname" : "MACHO",
+                "lname" : "MACHKAR"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 31000,
+        "des" : "tester",
+        "age" : 23,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-01-22T00:00:00Z"),
+        "email" : "tejassmachkar@gmail.com",
+        "contact" : 9765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf0ffd9f4759b65a8faf"),
+        "empid" : 2,
+        "name" : {
+                "fname" : "Harshika",
+                "lname" : "mishra"
+        },
+        "company_name" : "INFOSYS",
+        "salary_no" : 310000,
+        "des" : "HR",
+        "age" : 45,
+        "expertise" : "Recruitment",
+        "DOB" : ISODate("2000-03-15T00:00:00Z"),
+        "email" : "harshikaINC@gmail.com",
+        "contact" : 8765222269,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Panaji",
+                                "state" : "Goa"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf20fd9f4759b65a8fb0"),
+        "empid" : 3,
+        "name" : {
+                "fname" : "Sumedh",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "TCS",
+        "salary_no" : 2000,
+        "des" : "Tester",
+        "age" : 25,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-02-06T00:00:00Z"),
+        "email" : "sumedh@gmail.com",
+        "contact" : 8765222279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Morocco",
+                                "state" : "Uganda"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf42fd9f4759b65a8fb2"),
+        "empid" : 5,
+        "name" : {
+                "fname" : "Ankita",
+                "lname" : "Zadoo"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 21000,
+        "des" : "Developer",
+        "age" : 44,
+        "expertise" : "managing ppl",
+        "DOB" : ISODate("2000-02-29T00:00:00Z"),
+        "email" : "ankita@gmail.com",
+        "contact" : 8775223279,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "City",
+                                "state" : "Jordan"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf55fd9f4759b65a8fb3"),
+        "empid" : 6,
+        "name" : {
+                "fname" : "Shreya",
+                "lname" : "Kashid"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 50000,
+        "des" : "Senior Developer",
+        "age" : 37,
+        "expertise" : "completion",
+        "DOB" : ISODate("2000-11-04T00:00:00Z"),
+        "email" : "shreya@gmail.com",
+        "contact" : 8775225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "satara",
+                                "state" : "maharashtra"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf60fd9f4759b65a8fb4"),
+        "empid" : 7,
+        "name" : {
+                "fname" : "Sayali",
+                "lname" : "Ovhal"
+        },
+        "company_name" : "Infosys",
+        "salary_no" : 51000,
+        "des" : "tester",
+        "age" : 34,
+        "expertise" : "Talking",
+        "DOB" : ISODate("2000-10-19T00:00:00Z"),
+        "email" : "abc@gmail.com",
+        "contact" : 8755225679,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Dream City",
+                                "state" : "Mars"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdddf6afd9f4759b65a8fb5"),
+        "empid" : 8,
+        "name" : {
+                "fname" : "Atulya",
+                "lname" : "Nair"
+        },
+        "company_name" : "",
+        "salary_no" : 51000,
+        "des" : "Developer",
+        "age" : 56,
+        "expertise" : "web dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "tulyaaa@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "kochin",
+                                "state" : "kerela"
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde002fd9f4759b65a8fb6"),
+        "empid" : 9,
+        "name" : {
+                "fname" : "Kaushik",
+                "lname" : "Oswal"
+        },
+        "company_name" : "Amazon",
+        "salary_no" : 21000,
+        "des" : "Senior Developer",
+        "age" : 15,
+        "expertise" : "android dev",
+        "DOB" : ISODate("2000-12-11T00:00:00Z"),
+        "email" : "Oswal@gmail.com",
+        "contact" : 8755225479,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "Mirzapur",
+                                "state" : "UP",
+                                "Pin_code" : 411101
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fdde00efd9f4759b65a8fb7"),
+        "empid" : 10,
+        "name" : {
+                "fname" : "sanyukta",
+                "lname" : "adsule"
+        },
+        "company_name" : "serum",
+        "salary_no" : 11999,
+        "des" : "tester",
+        "age" : 21,
+        "expertise" : "app dev",
+        "DOB" : ISODate("2000-10-23T00:00:00Z"),
+        "email" : "sanyuuuu@gmail.com",
+        "contact" : 8755225879,
+        "address" : [
+                {
+                        "padd" : {
+                                "city" : "pune",
+                                "state" : "Maharashtra",
+                                "Pin_code" : 411014
+                        }
+                },
+                {
+                        "ladd" : {
+                                "city" : "pune",
+                                "state" : "maharashtra"
+                        }
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5fe06a37020554aad92b42c5"),
+        "age" : 25,
+        "company_name" : "TCS",
+        "des" : "Tester",
+        "salary_no" : 2000,
+        "empid" : 15
+}

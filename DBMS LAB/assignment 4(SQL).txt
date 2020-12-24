@@ -1,0 +1,505 @@
+Assignment - 4
+
+create database assignment_4;
+
+Q1
+CREATE TABLE cust_mstr
+(cust_no INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+fname VARCHAR(10) NOT NULL,
+lname VARCHAR(10) NOT NULL);
+
+CREATE TABLE add_dets
+(code_no INT UNSIGNED,
+add1 VARCHAR(40) NOT NULL,
+add2 VARCHAR(40) DEFAULT 'SAME AS ADD1',
+state VARCHAR(13) NOT NULL,
+city VARCHAR(10) NOT NULL,
+pincode INT NOT NULL);
+
+INSERT INTO cust_mstr(fname, lname) VALUES('SHABBIR', 'KACHWALA'),
+('ATULYA', 'NAYAR'),
+('TANAYA', 'BISWAS'),
+('TANMAY', 'JAGTAP'),
+('ANKITA', 'JADOO'),
+('TEJAS', 'LABDE'),
+('DHRUVIL', 'SHAH');
+
+
+mysql> SELECT * FROM cust_mstr;
++---------+---------+----------+
+| cust_no | fname   | lname    |
++---------+---------+----------+
+|       1 | SHABBIR | KACHWALA |
+|       2 | ATULYA  | NAYAR    |
+|       3 | TANAYA  | BISWAS   |
+|       4 | TANMAY  | JAGTAP   |
+|       5 | ANKITA  | JADOO    |
+|       6 | TEJAS   | LABDE    |
+|       7 | DHRUVIL | SHAH     |
++---------+---------+----------+
+7 rows in set (0.00 sec)
+
+INSERT INTO add_dets(code_no,add1,state,city,pincode) VALUES(1994, 'CONVENT STREET, CENTRAL APARTENTS', 'MAHARASHTRA', 'PUNE', 411001),
+(1234, 'MAIN STREET, MEHER APARTENTS', 'MAHARASHTRA', 'PUNE', 411006),
+(5235, 'FASHION STREET, CINDERELLA', 'MAHARASHTRA', 'PUNE', 411053),
+(8765, 'GENERAL ROAD, ICON AVENUE', 'MAHARASHTRA', 'PUNE', 411022),
+(8955, 'G.M.MARG, BHRAMA MAJESTIC', 'MAHARASHTRA', 'PUNE', 411053),
+(1658, 'F.C. ROAD, DWARF SOCIETY', 'MAHARASHTRA', 'PUNE', 411072),
+(7250, 'M.G. ROAD, MANSION RESIDENCE', 'MAHARASHTRA', 'PUNE', 411082);
+
+
+mysql> SELECT * FROM add_dets;
++---------+-----------------------------------+--------------+-------------+------+---------+
+| code_no | add1                              | add2         | state       | city | pincode |
++---------+-----------------------------------+--------------+-------------+------+---------+
+|    1994 | CONVENT STREET, CENTRAL APARTENTS | SAME AS ADD1 | MAHARASHTRA | PUNE |  411001 |
+|    1234 | MAIN STREET, MEHER APARTENTS      | SAME AS ADD1 | MAHARASHTRA | PUNE |  411006 |
+|    5235 | FASHION STREET, CINDERELLA        | SAME AS ADD1 | MAHARASHTRA | PUNE |  411053 |
+|    8765 | GENERAL ROAD, ICON AVENUE         | SAME AS ADD1 | MAHARASHTRA | PUNE |  411022 |
+|    8955 | G.M.MARG, BHRAMA MAJESTIC         | SAME AS ADD1 | MAHARASHTRA | PUNE |  411053 |
+|    1658 | F.C. ROAD, DWARF SOCIETY          | SAME AS ADD1 | MAHARASHTRA | PUNE |  411072 |
+|    7250 | M.G. ROAD, MANSION RESIDENCE      | SAME AS ADD1 | MAHARASHTRA | PUNE |  411082 |
++---------+-----------------------------------+--------------+-------------+------+---------+
+
+mysql> ALTER TABLE add_dets ADD cust_no INT AUTO_INCREMENT PRIMARY KEY;
+Query OK, 0 rows affected (0.55 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM add_dets;
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+| code_no | add1                              | add2         | state       | city | pincode | cust_no |
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+|    1994 | CONVENT STREET, CENTRAL APARTENTS | SAME AS ADD1 | MAHARASHTRA | PUNE |  411001 |       1 |
+|    1234 | MAIN STREET, MEHER APARTENTS      | SAME AS ADD1 | MAHARASHTRA | PUNE |  411006 |       2 |
+|    5235 | FASHION STREET, CINDERELLA        | SAME AS ADD1 | MAHARASHTRA | PUNE |  411053 |       3 |
+|    8765 | GENERAL ROAD, ICON AVENUE         | SAME AS ADD1 | MAHARASHTRA | PUNE |  411022 |       4 |
+|    8955 | G.M.MARG, BHRAMA MAJESTIC         | SAME AS ADD1 | MAHARASHTRA | PUNE |  411053 |       5 |
+|    1658 | F.C. ROAD, DWARF SOCIETY          | SAME AS ADD1 | MAHARASHTRA | PUNE |  411072 |       6 |
+|    7250 | M.G. ROAD, MANSION RESIDENCE      | SAME AS ADD1 | MAHARASHTRA | PUNE |  411082 |       7 |
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+
+mysql> SELECT * FROM add_dets
+       WHERE  add_dets.cust_no = (
+			SELECT cust_no FROM cust_mstr 
+			WHERE fname='TANMAY' AND lname='JAGTAP');
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+| code_no | add1                              | add2         | state       | city | pincode | cust_no |
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+|     8765| GENERAL ROAD, ICON AVENUE         | SAME AS ADD1 | MAHARASHTRA | PUNE |  411022 |       4 |
++---------+-----------------------------------+--------------+-------------+------+---------+---------+
+
+
+Q2.
+=> CREATE TABLE fd_dets(
+fd_sr_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+amt INT NOT NULL);
+
+mysql> ALTER TABLE fd_dets AUTO_INCREMENT= 5253;
+
+=> CREATE TABLE acc_fd_cust_dets(
+codeno INT AUTO_INCREMENT PRIMARY KEY,
+acc_fd_no INT NOT NULL REFERENCES fd_dets (fd_sr_no));
+
+
+mysql> INSERT INTO fd_dets(amt) VALUES(1200),
+     (15000),
+     (13582),
+     (351861),
+     (12358),
+     (21038),
+     (84315);
+Query OK, 7 rows affected (0.07 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM fd_dets;
++----------+--------+
+| fd_sr_no | amt    |
++----------+--------+
+|     5253 |   1200 |
+|     5254 |  15000 |
+|     5255 |  13582 |
+|     5256 | 351861 |
+|     5257 |  12358 |
+|     5258 |  21038 |
+|     5259 |  84315 |
++----------+--------+
+
+
+mysql> INSERT INTO acc_fd_cust_dets VALUES(1,5253),
+     (2,5254),
+     (3,5255),
+     (4,5256),
+     (5,5257),
+     (6,5258),
+     (7,5200);
+Query OK, 7 rows affected (0.04 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM acc_fd_cust_dets;
++--------+-----------+
+| codeno | acc_fd_no |
++--------+-----------+
+|      1 |      5253 |
+|      2 |      5254 |
+|      3 |      5255 |
+|      4 |      5256 |
+|      5 |      5257 |
+|      6 |      5258 |
+|      7 |      5259 |
++--------+-----------+
+
+
+mysql> SELECT C.cust_no as c_no, C.fname as fname, C.lname as lname, FD.amt as amt
+     FROM (( cust_mstr as C
+     INNER JOIN acc_fd_cust_dets as ACC
+     ON C.cust_no = ACC.codeno)
+     INNER JOIN fd_dets as FD
+     ON FD.fd_sr_no = ACC.acc_fd_no
+     AND amt > 5000);
++------+---------+--------+--------+
+| c_no | fname   | lname  | amt    |
++------+---------+--------+--------+
+|    2 | ATULYA  | NAYAR  |  15000 |
+|    3 | TANAYA  | BISWAS |  13582 |
+|    4 | TANMAY  | JAGTAP | 351861 |
+|    5 | ANKITA  | JADOO  |  12358 |
+|    6 | TEJAS   | LABDE  |  21038 |
+|    7 | DHRUVIL | SHAH   |  84315 |
++------+---------+--------+--------+
+
+
+Q3.
+CREATE TABLE branch_mstr(
+name VARCHAR(10) NOT NULL,
+b_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY); 
+
+INSERT INTO branch_mstr(name) VALUES ('CAMP'),
+('NIGDI'),
+('CITY'),
+('KONDHWA'),
+('AKURDI'),
+('KHADKI'),
+('BHOSARI');
+
+mysql> SELECT * FROM branch_mstr;
++---------+------+
+| name    | b_no |
++---------+------+
+| CAMP    |    1 |
+| NIGDI   |    2 |
+| CITY    |    3 |
+| KONDHWA |    4 |
+| AKURDI  |    5 |
+| KHADKI  |    6 |
+| BHOSARI |    7 |
++---------+------+
+
+CREATE TABLE emp_mstr(
+emp_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+f_name VARCHAR(10) NOT NULL,
+l_name VARCHAR(10) NOT NULL,
+m_name VARCHAR(10) NOT NULL,
+dept VARCHAR(10) NOT NULL,
+desg VARCHAR(10) NOT NULL,
+branch_no INT);
+
+INSERT INTO emp_mstr(f_name,l_name,m_name, dept, desg, branch_no) VALUES ('SOHAM', 'BORDE', 'TEJAS', 'FINANCE', 'CLERK', 1),
+('ASHWIN', 'BASAWRAJ','KARAN', 'FINANCE', 'CLERK', 2),
+('YASH', 'DUNGERWAL', 'ANIKET', 'FINANCE', 'CLERK', 3),
+('PRANAY', 'TUGITY', 'DHRUV', 'FINANCE', 'CLERK', 4),
+('KRUPA', 'MEHTA', 'GAURAV', 'FINANCE', 'CLERK', 5),
+('NEHA', 'PACHAL', 'ARVIN', 'FINANCE', 'CLERK', 6),
+('RADHA', 'CHOPDE', 'SUNIL', 'FINANCE', 'CLERK', 7);
+
+
+mysql> SELECT f_name,l_name,name
+     FROM emp_mstr
+     INNER JOIN branch_mstr
+     ON b_no=branch_no;
++--------+-----------+---------+
+| f_name | l_name    | name    |
++--------+-----------+---------+
+| SOHAM  | BORDE     | CAMP    |
+| ASHWIN | BASAWRAJ  | NIGDI   |
+| YASH   | DUNGERWAL | CITY    |
+| PRANAY | TUGITY    | KONDHWA |
+| KRUPA  | MEHTA     | AKURDI  |
+| NEHA   | PACHAL    | KHADKI  |
+| RADHA  | CHOPDE    | BHOSARI |
++--------+-----------+---------+
+
+Q4.
+
+CREATE TABLE cntc_dets(
+code_no INT,
+cntc_type VARCHAR(10),
+cntc_data VARCHAR(20)
+);
+
+INSERT INTO cntc_dets VALUES(1, 'PH_NO', '16789823'),
+(3, 'PH_NO', '1245452'),
+(5, 'PH_NO', '1435342');
+
+mysql> SELECT * FROM cntc_dets;
++---------+-----------+-----------+
+| code_no | cntc_type | cntc_data |
++---------+-----------+-----------+
+|       1 | PH_NO     | 16789823  |
+|       3 | PH_NO     | 1245452   |
+|       5 | PH_NO     | 1435342   |
++---------+-----------+-----------+
+
+
+SELECT emp_no, f_name, l_name, m_name, dept, desg, branch_no, cntc_type, cntc_data
+    FROM emp_mstr
+     LEFT JOIN cntc_dets
+     ON emp_no = code_no 
+     ORDER BY emp_no;
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+| emp_no | f_name | l_name    | m_name | dept    | desg  | branch_no | cntc_type | cntc_data |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+|      1 | SOHAM  | BORDE     | TEJAS  | FINANCE | CLERK |         1 | PH_NO     | 16789823  |
+|      2 | ASHWIN | BASAWRAJ  | KARAN  | FINANCE | CLERK |         2 | NULL      | NULL      |
+|      3 | YASH   | DUNGERWAL | ANIKET | FINANCE | CLERK |         3 | PH_NO     | 1245452   |
+|      4 | PRANAY | TUGITY    | DHRUV  | FINANCE | CLERK |         4 | NULL      | NULL      |
+|      5 | KRUPA  | MEHTA     | GAURAV | FINANCE | CLERK |         5 | PH_NO     | 1435342   |
+|      6 | NEHA   | PACHAL    | ARVIN  | FINANCE | CLERK |         6 | NULL      | NULL      |
+|      7 | RADHA  | CHOPDE    | SUNIL  | FINANCE | CLERK |         7 | NULL      | NULL      |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+
+mysql> INSERT INTO cntc_dets VALUES(8, 'PH_NO', '88645384');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM cntc_dets;
++---------+-----------+-----------+
+| code_no | cntc_type | cntc_data |
++---------+-----------+-----------+
+|       1 | PH_NO     | 16789823  |
+|       3 | PH_NO     | 1245452   |
+|       5 | PH_NO     | 1435342   |
+|       8 | PH_NO     | 88645384  |
++---------+-----------+-----------+
+
+mysql> SELECT emp_no, f_name, l_name, m_name, dept, desg, branch_no, cntc_type, cntc_data
+     FROM emp_mstr
+     RIGHT JOIN cntc_dets
+     ON emp_no = code_no
+     ORDER BY code_no;
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+| emp_no | f_name | l_name    | m_name | dept    | desg  | branch_no | cntc_type | cntc_data |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+|      1 | SOHAM  | BORDE     | TEJAS  | FINANCE | CLERK |         1 | PH_NO     | 16789823  |
+|      3 | YASH   | DUNGERWAL | ANIKET | FINANCE | CLERK |         3 | PH_NO     | 1245452   |
+|      5 | KRUPA  | MEHTA     | GAURAV | FINANCE | CLERK |         5 | PH_NO     | 1435342   |
+|   NULL | NULL   | NULL      | NULL   | NULL    | NULL  |      NULL | PH_NO     | 88645384  |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+
+mysql> SELECT emp_no, f_name, l_name, m_name, dept, desg, branch_no, cntc_type, cntc_data
+     FROM emp_mstr
+     LEFT JOIN cntc_dets
+     ON emp_no = code_no
+     UNION
+     SELECT emp_no, f_name, l_name, m_name, dept, desg, branch_no, cntc_type, cntc_data
+     FROM emp_mstr
+     RIGHT JOIN cntc_dets
+     ON emp_no = code_no
+     ;
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+| emp_no | f_name | l_name    | m_name | dept    | desg  | branch_no | cntc_type | cntc_data |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+|      1 | SOHAM  | BORDE     | TEJAS  | FINANCE | CLERK |         1 | PH_NO     | 16789823  |
+|      3 | YASH   | DUNGERWAL | ANIKET | FINANCE | CLERK |         3 | PH_NO     | 1245452   |
+|      5 | KRUPA  | MEHTA     | GAURAV | FINANCE | CLERK |         5 | PH_NO     | 1435342   |
+|      2 | ASHWIN | BASAWRAJ  | KARAN  | FINANCE | CLERK |         2 | NULL      | NULL      |
+|      4 | PRANAY | TUGITY    | DHRUV  | FINANCE | CLERK |         4 | NULL      | NULL      |
+|      6 | NEHA   | PACHAL    | ARVIN  | FINANCE | CLERK |         6 | NULL      | NULL      |
+|      7 | RADHA  | CHOPDE    | SUNIL  | FINANCE | CLERK |         7 | NULL      | NULL      |
+|      9 | ALI    | BH        | JBUI   | GAS     | ASYGF |         5 | NULL      | NULL      |
+|   NULL | NULL   | NULL      | NULL   | NULL    | NULL  |      NULL | PH_NO     | 88645384  |
++--------+--------+-----------+--------+---------+-------+-----------+-----------+-----------+
+
+
+Q5.
+
+mysql> CREATE VIEW BORROWER_VIEW AS SELECT * FROM Borrower;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM BORROWER_VIEW;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA JADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
++------------------+---------+
+
+mysql> SELECT * FROM Loan;
++---------+---------------+--------+
+| loan_no | branch_name   | amount |
++---------+---------------+--------+
+|     110 | AKURDI BRANCH |  12000 |
+|     111 | AKURDI BRANCH |  90000 |
+|     112 | CAMP          |  40000 |
+|     113 | NIGDI         |  12500 |
+|     114 | AKURDI BRANCH |  12500 |
+|     115 | KONDHWA       |  10500 |
++---------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO Loan VALUES(116, 'KONDHWA', 123650 );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO BORROWER_VIEW VALUES('TANMAY JAGTAP', 116);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM BORROWER_VIEW
+    -> ;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA JADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
+| TANMAY JAGTAP    |     116 |
++------------------+---------+
+
+
+mysql> UPDATE BORROWER_VIEW SET cust_name='ALI ANEES'
+    -> WHERE
+    -> loan_no=116;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM BORROWER_VIEW;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA JADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
+| ALI ANEES        |     116 |
++------------------+---------+
+
+
+mysql> DELETE FROM BORROWER_VIEW WHERE loan_no=116;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT * FROM BORROWER_VIEW;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA JADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
++------------------+---------+
+
+Q6.
+
+mysql> CREATE VIEW BOR_DEP
+     AS
+     SELECT acc_no, Depositor.cust_name, loan_no
+     FROM Depositor
+     INNER JOIN Borrower
+     ON Depositor.cust_name=Borrower.cust_name;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SELECT * FROM BOR_DEP;
++--------+------------------+---------+
+| acc_no | cust_name        | loan_no |
++--------+------------------+---------+
+|    352 | ANKITA JADOO     |     110 |
+|    353 | ASHUTOSH KEDARI  |     111 |
+|    358 | SHABBIR KACHWALA |     112 |
+|    355 | HARSHIKA MISHRA  |     113 |
+|    354 | ATULYA NAYAR     |     114 |
+|    362 | TEJAS LABDE      |     115 |
++--------+------------------+---------+
+
+
+mysql> INSERT INTO Borrower VALUES('ALIASGAR ANEES', 116);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM Borrower;
++------------------+---------+
+| cust_name        | loan_no |
++------------------+---------+
+| ANKITA JADOO     |     110 |
+| ASHUTOSH KEDARI  |     111 |
+| SHABBIR KACHWALA |     112 |
+| HARSHIKA MISHRA  |     113 |
+| ATULYA NAYAR     |     114 |
+| TEJAS LABDE      |     115 |
+| ALIASGAR ANEES   |     116 |
++------------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO Depositor VALUES('ALIASGAR ANEES', 364);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM BOR_DEP;
++--------+------------------+---------+
+| acc_no | cust_name        | loan_no |
++--------+------------------+---------+
+|    352 | ANKITA JADOO     |     110 |
+|    353 | ASHUTOSH KEDARI  |     111 |
+|    358 | SHABBIR KACHWALA |     112 |
+|    355 | HARSHIKA MISHRA  |     113 |
+|    354 | ATULYA NAYAR     |     114 |
+|    362 | TEJAS LABDE      |     115 |
+|    364 | ALIASGAR ANEES   |     116 |
++--------+------------------+---------+
+
+
+mysql> UPDATE Depositor
+    -> SET cust_name='ALI ANIS'
+    -> WHERE acc_no=364;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE Borrower SET cust_name='ALI ANIS' WHERE loan_no=116;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM BOR_DEP;
++--------+------------------+---------+
+| acc_no | cust_name        | loan_no |
++--------+------------------+---------+
+|    352 | ANKITA JADOO     |     110 |
+|    353 | ASHUTOSH KEDARI  |     111 |
+|    358 | SHABBIR KACHWALA |     112 |
+|    355 | HARSHIKA MISHRA  |     113 |
+|    354 | ATULYA NAYAR     |     114 |
+|    362 | TEJAS LABDE      |     115 |
+|    364 | ALI ANIS         |     116 |
++--------+------------------+---------+
+
+
+mysql> DELETE FROM Depositor WHERE acc_no=364;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> DELETE FROM Borrower WHERE loan_no=116;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT * FROM BOR_DEP;
++--------+------------------+---------+
+| acc_no | cust_name        | loan_no |
++--------+------------------+---------+
+|    352 | ANKITA JADOO     |     110 |
+|    353 | ASHUTOSH KEDARI  |     111 |
+|    358 | SHABBIR KACHWALA |     112 |
+|    355 | HARSHIKA MISHRA  |     113 |
+|    354 | ATULYA NAYAR     |     114 |
+|    362 | TEJAS LABDE      |     115 |
++--------+------------------+---------+

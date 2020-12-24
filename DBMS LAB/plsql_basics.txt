@@ -1,0 +1,275 @@
+declare 
+name varchar2(10);
+sal number(10,2);
+begin
+select First_Name,Salaray into name , sal from Employees
+where Employee_id = 100;
+dbms_output.put_line('name: '||name);
+dbms_output.put_line('salary: '||sal);
+end;
+
+
+
+
+declare 
+name Employees.First_Name%TYPE;
+sal number(10,2);
+lastname name%TYPE;
+begin
+select First_Name,Salaray,Last_Name into name , sal,lastname from Employees
+where Employee_id = 100;
+dbms_output.put_line('name: '||name);
+dbms_output.put_line('lastname: '||lastname);
+dbms_output.put_line('salary: '||sal);
+end;
+
+
+declare 
+record Employees%ROWTYPE;
+begin
+select * into record from Employees
+where Employee_id = 100;
+dbms_output.put_line(record.First_Name || ' | ' || record.Salary || ' | ');
+end;
+
+------------------Conditional------------------
+
+declare
+deptid Employee.Dept_id%TYPE;
+sal Employee.Salary%TYPE;
+
+begin
+select Dept_id , Salaray into deptid , sal from Employees where Employee_id=105;
+dbms_output.put_line(deptid || '|' || sal);
+if deptid = 30 then
+	sal := sal+3;
+elsif deptid = 60 then
+	sal := sal+6;
+else 
+	sal := sal+10;
+end if;
+update Employee set Salaray=sal where Employee_id = 105;
+
+
+
+
+declare 
+	num number(1) := &Weekday;
+	dayname vachar2(10);
+begin 
+	dayname:= case num
+		when 1 then 'Monday'
+		when 2 then 'Tuesday'
+		when 3 then 'Wedday'
+		when 4 then 'Thursday'
+		else 'Sunday'
+		end;
+	dbms_output.put_line(dayname);
+end;
+
+--------------Loop----------------
+
+declare
+ i number(2);
+begin
+	loop
+	dbms_output.put_line(i);
+	i:=1+1;
+	exit when i>10;
+	end loop;
+end;
+
+--------While Loop---------------
+
+
+declare
+ i number(2);
+begin
+	i:=1;
+	
+	while i<=10 loop
+	dbms_output.put_line(i);
+	i:=i+1;
+	end loop;
+end;
+
+------For Loop----------
+
+begin
+	for i in 1..10 loop
+		dbms_output.put_line(i);
+	end loop;
+end;
+
+
+
+begin
+	for i in reverse 1..10 loop
+		dbms_output.put_line(i);
+	end loop;
+end;
+
+
+-----------Implicit Cursors--------------
+
+
+%ROWCOUNT %FOUND %NOTFOUND %ISOPEN(to check whether cursor is open)
+
+declare
+	cnt number(3);
+
+begin 
+	update employees set salary = salary+2 where department_id = 20;
+	cnt := SQL%ROWCOUNT
+	dbms_output.put_line(cnt || 'Rows updataes');
+end;
+
+----------Explicit Cursors---------------
+
+steps
+declare (associate select with that cursor)
+open 
+fetch
+close
+-------------------------
+attributes used
+
+%ROWCOUNT %FOUND %NOTFOUND %ISOPEN(to check whether cursor is open)
+
+--------------------------
+
+declare
+	empno employees.id%TYPE
+	empname employees.last_name%TYPE;
+	
+	Cursor emp_cursor is
+		select employee_id, last_name
+			from employee;
+begin
+	open emp_cursor;
+	Loop
+		fetch emp_cursor into empno , empname;
+		exit when emp_cursor%ROWCOUNT > 10 or emp_cursor%NOTFOUND;
+		dbms_output.put_line(empid || ':' || empname);
+	end loop;
+	close emp_cursor;
+end;
+
+
+---------------------Advanced Cursors(Paramerterised)----------------------
+
+
+
+declare
+	empno employees.id%TYPE
+	empname employees.last_name%TYPE;
+	
+	Cursor emp_cursor(id_param number) is
+		select employee_id, last_name
+			from employee
+			where emp_id = id_param;
+begin
+	open emp_cursor(10);
+	Loop
+		fetch emp_cursor into empno , empname;
+		exit when emp_cursor%ROWCOUNT > 10 or emp_cursor%NOTFOUND;
+		dbms_output.put_line(empid || ':' || empname);
+	end loop;
+	close emp_cursor;
+
+	dbms_output.put_line('------------------');
+
+	open emp_cursor(20);
+	Loop
+		fetch emp_cursor into empno , empname;
+		exit when emp_cursor%ROWCOUNT > 10 or emp_cursor%NOTFOUND;
+		dbms_output.put_line(empid || ':' || empname);
+	end loop;
+	close emp_cursor;
+	dbms_output.put_line('------------------');
+
+end;
+
+
+----------For Update of ----------------
+
+declare
+	cursor emp_cursor is
+	select employee_id , last_name , salary
+	from employess
+	where department_id = 50
+	for update  of salary NOWAIT;
+Begin
+	update employees set salary = salary+ 10 where department_id = 5;
+END;
+
+--> if someone else tries to do this update wil have to wait until this session gives a rollback
+
+
+---------Current of----------
+
+declare
+	cursor sal_cursor is
+		select employee_id , last_name , salary
+		from employees
+		where department_id = 50
+		for update of salary NOWAIT;
+begin
+	for emp_record in sal_cursor
+	loop
+		if emp_record.salary < 5000 then
+			update employees
+			set salary = salary+500
+			where current of sal_cursor;
+		end if;
+	end loop;
+end;
+
+---------------------Exception Handling---------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------Procedures---------------------------
+
+CREATE OR REPLACE PROCEDURE test_procedure IS
+BEGIN 
+dbms_output.put_line('Test executed')
+END;
+
+
+---> to execute
+execute test_procedure
+
+
+---> Passing Parameters
+
+CREATE OR REPLACE PROCEDURE add_dept
+(
+p_did IN departments.department_id%TYPE,
+p_dname IN departments.department_name%TYPE,
+p_mid IN departments.mananger_id%TYPE,
+p_lid IN departments.location_id%TYPE,
+)
+IS 
+BEGIN
+INSERT INTO departments VALUES (p_did,p_name,p_mid,p_lid);
+dbms_output.put_line('Department added.');
+END;
+
+
+
+ 
+
