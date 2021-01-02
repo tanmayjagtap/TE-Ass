@@ -21,7 +21,7 @@ int main(void)
 	clientaddr.sin_family=AF_INET;
 	clientaddr.sin_addr.s_addr=inet_addr("127.0.0.1");
 	clientaddr.sin_port=htons(5000);
-	if(connect(sockfd,(struct sockaddr *) &clientaddr, sizeof(clientaddr)) < 0 )		  	  
+	if(connect(sockfd,(struct sockaddr *) &clientaddr, sizeof(clientaddr)) < 0 )
 		perror("Connect error\n");
 	else
 		printf("Connected successfully\n");
