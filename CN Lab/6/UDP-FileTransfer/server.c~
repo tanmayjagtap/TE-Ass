@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<arpa/inet.h>
+#include<sys/socket.h>
+
+#define BUFLEN 503
+#define PORT 8885
+
+void die(char *s)
+{
+	perror(s);/*perror() produces a short  error  message  on  the  standard
+     error describing the last error encountered during a call to
+     a system or library function.  If _s is not  a  NULL  pointer
+     and does not point to a null string, the string it points to
+     is printed, followed by a colon, followed by a  space,  fol-
+     lowed  by  the message and a NEWLINE. If _s is a NULL pointer
+     or points to a null string, just  the  message  is  printed,
+     followed  by  a  NEWLINE.  To  be  of most use, the argument
+     string should include the name of the program that  incurred
+     the  error.  */
+	exit(1);
+}
+
+int main(void)
+{
+	struct sockaddr_in si_me, si_other;
+	
+	int s, i,j, slen = sizeof(si_other) , recv_len;
+	char buf[BUFLEN];
+	
+	if ((s=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
+	{
+		die("socket");
+	}
+	
+	memset((char *) &si_me, 0, sizeof(si_me));/*The C library function void *memset(void *str, int c, size_t n) copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
+
+    str − This is a pointer to the block of memory to fill.
+
+    c − This is the value to be set. The value is passed as an int, but the function fills the block of memory using the unsigned char conversion of this value.
+
+    n − This is the number of bytes to be set to the value.*/
+
+	
+	si_me.sin_family = AF_INET;
+	si_me.sin_port = htons(PORT);//the function htons():Host To Network Short which converts a port number in host byte order to a port number in network byte order.
+	si_me.sin_addr.s_addr = htonl(INADDR_ANY);//htonl() Host TO Network Long
+	
+	if( bind(s , (struct sockaddr*)&si_me, sizeof(si_me) ) == -1)
+	{
+		die("bind");
+	}
+	recv_len = recvfrom(s, buf, 20, 0, (struct sockaddr *) &si_other, &slen);
+	
+	printf("file name is %s\n\n",buf);
+	
+	FILE *fp;
+	fp=fopen(buf,"r");
+	char data[200];
+	if(fp==NULL)
+		sendto(s, "File does not exist!!!\n\n", 30, 0 , (struct sockaddr *) &si_other, slen);
+	else
+	{
+		fseek(fp, 0, SEE);    /* file pointer at the end of file */
+		int size = ftell(fp);
+		rewind(fp);
+		fread(data,size,1,fp);
+		sendto(s, data, sizeof(data) , 0 , (struct sockaddr *) &si_other, slen);
+		fclose(fp);
+	}
+	return 0;
+}
