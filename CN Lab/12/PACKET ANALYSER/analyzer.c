@@ -1,10 +1,3 @@
-//############QJ Technologies###########
-//#Author: Qaidjohar Jawadwala		 # 
-//#Email: info@qjtechnologies.com 	 #
-//#Website: www.qjtechnologies.com     #
-//#Code Description: Wireshark .pcap file analyser using libpcap library
-//######################################
-
 #include<pcap.h>
 #include<stdio.h>
 #include<net/ethernet.h>
@@ -59,16 +52,7 @@ void process_packet(u_char *args, const struct pcap_pkthdr *header, const u_char
 }
 
 
-
-/*outpot:-
-root@ACA8FD7F:~/Downloads/CN TOtal Final Programs/CNP/Group A/A9_analyzer# g++ -o wireshark_analyzer wireshark_analyzer.cpp -lpcap
-
-root@ACA8FD7F:~/Downloads/CN TOtal Final Programs/CNP/Group A/A9_analyzer# ./wireshark_analyzer 
-TCP : 4   
-UDP : 193   
-ICMP : 0   
-IGMP : 0  
-Others : 511  
-Total : 708
-*/
- 
+/**
+ * Output : 
+ * TCP : 78   UDP : 6   ICMP : 7   IGMP : 0   Others : 9   Total : 100 
+ */

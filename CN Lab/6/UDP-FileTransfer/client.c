@@ -5,7 +5,7 @@
 #include<sys/socket.h>
 
 #define SERVER "127.0.0.1"
-#define BUFLEN 503
+#define BUFLEN 1024
 #define PORT 8885
 
 void die(char *s)
