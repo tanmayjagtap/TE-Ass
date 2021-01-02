@@ -1,5 +1,5 @@
 // client code for UDP socket programming 
-#include <arpa/inet.h> 
+#include <winsock2.h> 
 #include <netinet/in.h> 
 #include <stdio.h> 
 #include <stdlib.h> 

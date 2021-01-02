@@ -1,0 +1,83 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+int findPower(int n)
+{
+	int power=0;
+	if(n%2!=0)
+	{
+		while(pow(2,power)<=n)
+			power++;
+	}
+	else
+	{
+		while(pow(2,power)<n)
+			power++;
+	}
+	return power;
+}
+int findParity(int dword[],int n,int power)
+{
+	int i=0,k=0,parity,no=0;
+	while(i<=n)
+	{
+		while(k++<power)
+		{
+			if(dword[i++]==1)
+				no++;
+		}
+		k=0;
+		while(k++<power)
+			i++;
+		k=0;		
+	}
+	if(no%2==0)
+		return 0;
+	return 1;	
+}
+int main()
+{
+	int dword[100], cword[100],n,power,pos=1,posd=0;
+	cout<<"\nEnter The length of the DataWord";
+	cin>>n;
+	cout<<"\nEnter DataWord:";
+	for(int i=0;i<n;i++)
+	{
+		cin>>dword[i];
+	}
+	cout<<"\n\nData Word is:";
+	for(int i=0;i<n;i++)
+	{
+		cout<<dword[i];
+	}
+	power=findPower(n);
+	//cout<<"\n\npower"<<power<<"\n\n";
+	int i=0;
+	while(posd<n)
+	{
+		if(pos!=pow(2,i))
+		{
+			cword[pos]=dword[posd++];
+			pos++;
+		}
+		else
+		{
+			pos++;
+			i++;
+		}
+	}
+	/*cout<<"\n\n";
+	for(int i=1;i<=n+power+1;i++)
+	cout<<"\n"<<cword[i];*/
+	i=0;
+	while(1)
+	{
+		pos=pow(2,i++);
+		cword[pos]=findParity(cword+pos,n+power+1,pos);
+		if(i>power)
+			break;
+	}
+	cout<<"\n\nCode Word is:";
+	for(int i=1;i<=n+power+1;i++)
+		cout<<cword[i];	
+}
